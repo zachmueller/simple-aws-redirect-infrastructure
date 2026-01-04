@@ -8,11 +8,36 @@
 
 This feature provides a centralized URL redirect service that allows users to manage and serve HTTP redirects through short, memorable slugs. The system enables administrators to maintain a collection of URL redirects in a single configuration file, which is then used to automatically redirect users to their intended destinations when they access specific short URLs.
 
+## Clarifications
+
+### Session 2026-01-04
+
+- Q: What should happen if two administrators attempt to update the redirect configuration file simultaneously? → A: Not a concern - this is a personal redirect tool for single-user operation. Concurrent configuration editing is explicitly out of scope.
+- Q: When a user is redirected to a target URL that is unreachable (DNS fails, server down, etc.), what should the redirect service do? → A: Redirect anyway - always send redirect response regardless of target availability. Browser handles unreachable targets.
+- Q: What level of logging and monitoring should the system provide for operational visibility? → A: Minimal logging - errors only, no request tracking.
+- Q: Which AWS services should be used to implement this redirect infrastructure? → A: Lambda@Edge + CloudFront + S3 - edge functions for global low latency with configuration in S3.
+- Q: Where in S3 should the redirect configuration file be stored and accessed? → A: Single JSON file in bucket root (e.g., `redirects.json`).
+
 This solves the problem of managing multiple URL redirects across different domains or services by centralizing redirect logic in a single, easily-maintained configuration. It's particularly useful for:
 - Creating short, branded links for marketing campaigns
 - Maintaining stable URLs that redirect to changing destinations
 - Consolidating multiple domain redirects in one place
 - Managing permalink structures across domain migrations
+
+## Technical Architecture
+
+The system will be implemented using the following AWS services:
+
+- **Lambda@Edge:** Serverless compute functions running at CloudFront edge locations to handle redirect logic with minimal latency
+- **CloudFront:** Global content delivery network serving as the entry point for all redirect requests
+- **S3:** Object storage for the redirect configuration file with versioning enabled
+
+This architecture provides:
+- Global low-latency redirects through edge computing
+- Automatic scaling based on traffic demand
+- Configuration versioning and rollback capability
+- Minimal operational overhead
+- Cost-effective serverless pricing model
 
 ## User Stories
 
@@ -35,6 +60,7 @@ This solves the problem of managing multiple URL redirects across different doma
 - Slug matching is case-sensitive
 - Multiple users can access the same slug simultaneously without conflicts
 - Redirects maintain query parameters from the original request
+- System sends redirect response regardless of target URL availability (does not validate target reachability)
 
 ### FR-2: Multiple Redirect Type Support
 **Description:** The system must support different HTTP redirect status codes to accommodate various use cases (permanent moves, temporary redirects, etc.).
@@ -97,6 +123,7 @@ This solves the problem of managing multiple URL redirects across different doma
 - Configuration load failures are logged but don't prevent other redirects
 - System recovers automatically from transient failures
 - Error messages are generic enough to not expose system internals
+- System logs only error conditions (no request tracking or success logging)
 
 ## Non-Functional Requirements
 
@@ -128,7 +155,7 @@ This solves the problem of managing multiple URL redirects across different doma
 - Only authorized administrators can modify redirect configurations
 - Redirect configuration is not publicly accessible via direct URL
 - All redirect traffic uses HTTPS
-- System logs do not expose sensitive information
+- Minimal logging (errors only) reduces data exposure
 - Configuration changes are auditable through versioning
 
 ### NFR-4: Scalability
@@ -238,7 +265,8 @@ The redirect infrastructure will be considered successful when:
 
 **Attributes:**
 - **Format:** JSON object with slug keys and mapping values
-- **Location:** Stored in secured, versioned storage
+- **Location:** Single JSON file stored in S3 bucket root (e.g., `redirects.json`)
+- **Storage:** S3 bucket with versioning enabled for rollback capability
 - **Update Mechanism:** File replacement with automatic detection
 
 **Validation Rules:**
@@ -262,10 +290,11 @@ The redirect infrastructure will be considered successful when:
 
 ## Assumptions
 
+- This is a personal redirect tool operated by a single administrator
 - Users access the redirect service through standard web browsers or HTTP clients
 - Target destination URLs are under the control of the service operator or are publicly accessible
 - Administrators have basic familiarity with JSON syntax
-- The service operates in a cloud environment with geographic distribution capabilities
+- The service operates on AWS using Lambda@Edge, CloudFront, and S3
 - HTTPS is the standard protocol for both redirect service and target URLs
 - Redirect traffic patterns follow typical web traffic distributions (some slugs more popular than others)
 - Configuration updates are infrequent compared to redirect request volume (read-heavy workload)
@@ -285,3 +314,7 @@ The following features are explicitly excluded from this specification:
 - **Geographic Routing:** No location-based redirect destination selection
 - **Request Transformation:** No modification of query parameters or headers during redirect
 - **Rate Limiting:** No per-user or per-slug rate limiting or throttling
+- **Multi-User Editing:** No concurrent administrator support or conflict resolution (single-user personal tool)
+- **Target URL Validation:** No health checking or validation of target URL reachability before redirecting
+- **Request Logging:** No logging of successful redirects or request tracking (errors only)
+- **Metrics and Monitoring:** No custom metrics, dashboards, or alerting beyond basic error logs
