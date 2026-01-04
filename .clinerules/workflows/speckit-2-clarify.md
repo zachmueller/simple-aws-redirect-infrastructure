@@ -13,7 +13,7 @@ Run this workflow to:
 - Update specifications with clarified requirements
 - Validate completeness before planning phase
 
-**Note:** This workflow should run BEFORE the `plan` workflow. Skipping clarification increases downstream rework risk.
+**Note:** This workflow should run BEFORE the `speckit-3-plan` workflow. Skipping clarification increases downstream rework risk.
 
 ## Workflow Steps
 
@@ -212,7 +212,7 @@ After questioning loop ends, provide comprehensive report:
 - **Outstanding:** Still Partial/Missing but low impact
 
 **Next Steps Recommendation:**
-- If Outstanding/Deferred remain → Assess if should proceed to `plan` or run `clarify` again
+- If Outstanding/Deferred remain → Assess if should proceed to `speckit-3-plan` or run `speckit-2-clarify` again
 - Suggest next appropriate workflow
 - Flag any high-impact items still unresolved
 
@@ -260,7 +260,7 @@ Prioritize clarifications that address:
 ## Dependencies
 - Active feature branch with spec.md
 - Git repository for version control
-- Completed `specify` workflow
+- Completed `speckit-1-specify` workflow
 
 ## Outputs
 - Updated specification with clarifications
@@ -271,8 +271,8 @@ Prioritize clarifications that address:
 ## Next Steps
 After running this workflow:
 - Review coverage summary for any critical gaps
-- Run `plan` workflow to create implementation plan
-- Consider re-running `clarify` if high-impact items remain Outstanding
+- Run `speckit-3-plan` workflow to create implementation plan
+- Consider re-running `speckit-2-clarify` if high-impact items remain Outstanding
 
 ## Error Handling
 

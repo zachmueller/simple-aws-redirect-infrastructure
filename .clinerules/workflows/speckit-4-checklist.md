@@ -331,8 +331,8 @@ Tailor checklists to domain characteristics:
 
 ## Dependencies
 - Active feature branch with specification
-- Completed `specify` workflow
-- Optional: `plan` workflow for technical requirements
+- Completed `speckit-1-specify` workflow
+- Optional: `speckit-3-plan` workflow for technical requirements
 
 ## Outputs  
 - Domain-specific checklist file: `specs/[feature]/checklists/[domain].md`

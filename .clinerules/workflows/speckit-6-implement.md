@@ -3,14 +3,14 @@
 Execute the implementation plan by processing and executing all tasks defined in tasks.md
 
 ## Description
-This workflow systematically executes implementation tasks with built-in quality gates, progress tracking, and validation checkpoints. It handles phase-by-phase execution, dependency management, and ensures constitutional compliance throughout implementation.
+This workflow systematically executes implementation tasks with built-in quality gates, progress tracking, and validation checkpoints. It handles phase-by-phase execution, dependency management, and ensures quality standards throughout implementation.
 
 ## Usage
 Run this workflow to:
 - Execute implementation tasks in proper sequence
 - Validate quality gates and checkpoints
 - Track progress and handle task dependencies
-- Ensure constitutional compliance throughout implementation
+- Ensure quality standards throughout implementation
 - Manage parallel and sequential task execution
 
 ## Workflow Steps
@@ -89,7 +89,6 @@ Load and analyze all implementation artifacts:
 - Parse task breakdown structure and dependencies
 - Extract technology stack and architecture decisions
 - Identify file paths and component relationships
-- Load constitutional principles for compliance validation
 
 ### Step 4: Project Setup Verification
 Verify and create essential project files based on detected setup:
@@ -271,35 +270,13 @@ Handle individual task execution with proper tracking:
 - **Dependency Failure:** Block dependent tasks, suggest resolution
 - **Validation Failure:** Roll back if possible, require manual intervention
 
-### Step 8: Constitutional Compliance Monitoring
-Continuously validate constitutional adherence:
-
-**Compliance Validation Process:**
-```bash
-# Load project constitution
-cat .clinerules/memory/constitution.md
-```
-
-**Ongoing Validation:**
-- Verify implementation decisions align with constitutional principles
-- Check that quality gates enforce constitutional requirements
-- Ensure coding standards and practices follow governance rules
-- Validate that architecture decisions comply with project constitution
-
-**Compliance Reporting:**
-- Flag any potential constitutional violations
-- Document compliance validation at each phase
-- Report deviations and required corrections
-- Maintain audit trail of constitutional adherence
-
-### Step 9: Progress Tracking and Reporting
+### Step 8: Progress Tracking and Reporting
 Provide comprehensive progress tracking throughout implementation:
 
 **Progress Metrics:**
 - **Phase Completion:** Current phase and overall progress percentage
 - **Task Completion:** Completed tasks vs total tasks
 - **Quality Gates:** Passed/failed validation checkpoints  
-- **Constitutional Compliance:** Adherence to project governance
 - **Blocking Issues:** Unresolved dependencies or failures
 
 **Progress Reporting Format:**
@@ -326,7 +303,6 @@ Current Status:
 - Next Milestone: UI component completion
 - Estimated Completion: [Date]
 
-Constitutional Compliance: ✓ PASS
 Quality Gates: ✓ PASS
 Test Coverage: 85%
 ```
@@ -343,7 +319,6 @@ Final validation and completion verification:
 **Completion Validation Checklist:**
 - [ ] All tasks marked as completed `[X]` in tasks.md
 - [ ] All phase validation checkpoints passed
-- [ ] Constitutional compliance maintained throughout
 - [ ] Quality gates satisfied at all levels
 - [ ] Final end-to-end validation successful
 
@@ -361,7 +336,6 @@ git add .
 git commit -m "feat: complete implementation of [feature-name]
 
 ✓ All 56 tasks completed across 6 phases
-✓ Constitutional compliance maintained  
 ✓ Quality gates passed at all checkpoints
 ✓ Final validation successful against specification
 
@@ -373,7 +347,6 @@ Ready for: deployment, testing, review"
 **Completion Report:**
 - Implementation summary with metrics
 - Quality validation results
-- Constitutional compliance verification
 - Deployment readiness assessment
 - Post-implementation recommendations
 
@@ -389,7 +362,6 @@ Ready for: deployment, testing, review"
 **Quality Assurance:**
 - Run validation at each phase completion
 - Maintain test coverage throughout implementation
-- Verify constitutional compliance continuously
 - Address quality gate failures immediately
 
 **Error Recovery:**
@@ -412,21 +384,19 @@ Ready for: deployment, testing, review"
 - Provide realistic completion estimates
 
 ## Dependencies
-- Completed task breakdown (`tasks` workflow)
+- Completed task breakdown (`speckit-5-tasks` workflow)
 - Implementation plan with technical architecture
 - Quality checklists (recommended but not required)
-- Project constitution for compliance validation
 
 ## Outputs
 - Fully implemented feature according to specification
 - Updated tasks.md with all tasks marked complete
 - Implementation progress reports and validation results
-- Constitutional compliance documentation
 - Deployment-ready codebase
 
 ## Next Steps
 After running this workflow:
-- Run `analyze` workflow for cross-artifact consistency validation
+- Run `speckit-7-analyze` workflow for cross-artifact consistency validation
 - Prepare for deployment using deployment guides
 - Conduct final user acceptance testing
 - Merge feature branch following project governance
@@ -440,11 +410,6 @@ After running this workflow:
 - Check if all required tools and libraries are installed
 - Verify environment setup matches quickstart.md requirements
 - Validate network access for external dependencies
-
-**Constitutional Violations:**
-- Review project constitution for compliance requirements
-- Update implementation to align with governance principles
-- Document any necessary constitution amendments
 
 **Quality Gate Failures:**
 - Review quality standards and acceptance criteria

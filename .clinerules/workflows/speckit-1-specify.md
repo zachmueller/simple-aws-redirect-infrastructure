@@ -288,6 +288,5 @@ Don't ask about these - use industry standards:
 
 ## Next Steps
 After running this workflow:
-- Run `clarify` workflow if clarification needed
-- Run `plan` workflow to create implementation plan
-- Ensure constitution alignment before proceeding
+- Run `speckit-2-clarify` workflow if clarification needed
+- Run `speckit-3-plan` workflow to create implementation plan

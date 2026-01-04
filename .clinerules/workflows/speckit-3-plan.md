@@ -9,7 +9,6 @@ This workflow creates comprehensive implementation plans from feature specificat
 Run this workflow to:
 - Generate technical implementation plans from specifications
 - Create data models and API contracts
-- Perform constitution compliance checks
 - Set up research and design artifacts
 - Prepare for task breakdown and implementation
 
@@ -28,9 +27,6 @@ ls specs/*/spec.md
 
 # Check for existing plan
 ls specs/*/plan.md
-
-# Load constitution for compliance checks
-ls .clinerules/memory/constitution.md
 ```
 
 Parse feature directory structure and validate that specification is complete.
@@ -66,25 +62,6 @@ For each technology choice, document:
 - Third-party libraries and dependencies
 - Platform-specific considerations
 - Security and compliance requirements
-
-## Constitution Check
-
-Load project constitution and validate plan alignment:
-
-### Principle Compliance Review
-For each constitutional principle:
-- **Principle:** [Name]
-- **Requirement:** [What it mandates]
-- **Plan Alignment:** [How this plan complies]
-- **Validation:** [How compliance will be verified]
-
-### Quality Gates
-- [ ] All constitutional MUST requirements addressed
-- [ ] Non-negotiable principles not violated
-- [ ] Quality standards and practices followed
-- [ ] Compliance requirements satisfied
-
-**Gate Evaluation:** PASS/FAIL - Must be PASS to proceed
 
 ## Phase 0: Research & Architecture
 
@@ -174,13 +151,6 @@ Update AI assistant context with technology decisions:
 - [ ] API design follows established patterns
 - [ ] Documentation covers all major decisions
 
-### Constitution Alignment Re-check
-After design phase, re-validate constitutional compliance:
-- [ ] All principles still satisfied
-- [ ] No new violations introduced
-- [ ] Quality gates still passing
-- [ ] Compliance requirements met
-
 ## Risk Assessment
 
 ### Technical Risks
@@ -235,25 +205,7 @@ Analyze the specification and fill in technical decisions:
 - Consider team skills, project constraints, and maintenance
 - Mark genuinely ambiguous choices as NEEDS CLARIFICATION
 
-### Step 4: Constitution Compliance Check  
-Load constitution and validate plan alignment:
-
-**Commands to run:**
-```bash
-# Load constitution for compliance review
-cat .clinerules/memory/constitution.md
-```
-
-**Validation Process:**
-1. **Extract Constitutional Principles:** Load all MUST and SHOULD requirements
-2. **Map to Plan Elements:** Show how each principle is addressed
-3. **Identify Conflicts:** Flag any constitutional violations  
-4. **Document Compliance:** Create compliance matrix
-5. **Gate Decision:** PASS/FAIL - must be PASS to proceed
-
-**If FAIL:** Stop and require constitution updates or plan changes before proceeding.
-
-### Step 5: Phase 0 - Research Tasks
+### Step 4: Phase 0 - Research Tasks
 Generate research tasks for unresolved technical decisions:
 
 **Research Generation:**
@@ -321,11 +273,6 @@ Perform comprehensive validation before completion:
 - Documentation complete and consistent
 - Best practices followed throughout
 
-**Constitution Re-check:**
-- All principles still satisfied after design decisions
-- No new violations introduced during planning
-- Quality gates remain PASS status
-
 ### Step 8: Plan Completion and Handoff
 Finalize implementation plan and prepare for task breakdown:
 
@@ -340,15 +287,13 @@ git commit -m "feat: add implementation plan for [feature-name]
 - Technical architecture and technology stack decisions
 - Data model design with entity relationships  
 - API contracts and interface specifications
-- Development environment setup guide
-- Constitutional compliance validation"
+- Development environment setup guide"
 ```
 
 **Completion Report:**
 - Branch name and plan file path
 - Generated artifacts summary
-- Constitutional compliance status
-- Readiness for task breakdown (`tasks` workflow)
+- Readiness for task breakdown (`speckit-5-tasks` workflow)
 - Any remaining dependencies or assumptions
 
 ## Quality Guidelines
@@ -376,8 +321,7 @@ Each major technical decision should include:
 - **Error handling:** Provide clear, actionable error messages
 
 ## Dependencies
-- Completed and validated specification (`specify` and `clarify` workflows)
-- Project constitution for compliance checks
+- Completed and validated specification (`speckit-1-specify` and `speckit-2-clarify` workflows)
 - Optional: Existing architecture documentation or standards
 
 ## Outputs
@@ -390,7 +334,6 @@ Each major technical decision should include:
 
 ## Next Steps
 After running this workflow:
-- Run `tasks` workflow to break down implementation into specific tasks
+- Run `speckit-5-tasks` workflow to break down implementation into specific tasks
 - Set up development environment using quickstart guide
 - Begin implementation following the documented architecture
-- Validate constitutional compliance throughout development

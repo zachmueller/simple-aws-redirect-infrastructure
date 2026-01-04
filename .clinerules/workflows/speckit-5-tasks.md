@@ -366,10 +366,9 @@ For each task, ensure acceptance criteria are:
 - **Relevant:** Directly supports specification requirements
 - **Time-bound:** Can be completed in reasonable timeframe
 
-**Constitutional Compliance:**
-- Verify tasks align with project constitution principles
-- Include compliance validation in appropriate tasks
+**Quality Standards:**
 - Ensure quality standards maintained throughout implementation
+- Include validation checkpoints in appropriate tasks
 
 ### Step 8: Task File Generation and Validation
 Create complete tasks.md file with validation:

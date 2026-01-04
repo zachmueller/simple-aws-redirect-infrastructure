@@ -3,13 +3,12 @@
 Perform a non-destructive cross-artifact consistency and quality analysis across spec.md, plan.md, and tasks.md after task generation.
 
 ## Description
-This workflow identifies inconsistencies, duplications, ambiguities, and underspecified items across the three core artifacts (spec.md, plan.md, tasks.md) before or after implementation. It provides structured analysis with remediation recommendations while maintaining constitutional authority.
+This workflow identifies inconsistencies, duplications, ambiguities, and underspecified items across the three core artifacts (spec.md, plan.md, tasks.md) before or after implementation. It provides structured analysis with remediation recommendations.
 
 ## Usage
 Run this workflow to:
 - Validate consistency across specification, plan, and task artifacts
 - Identify gaps, duplications, and conflicts between documents
-- Ensure constitutional compliance across all artifacts
 - Generate actionable remediation recommendations
 - Validate readiness for implementation or deployment
 
@@ -29,17 +28,13 @@ git branch --show-current
 ls specs/*/spec.md
 ls specs/*/plan.md  
 ls specs/*/tasks.md
-
-# Load constitutional principles
-ls .clinerules/memory/constitution.md
 ```
 
 **Abort Conditions:**
 If any required file is missing, instruct user to run prerequisite workflows:
-- Missing `spec.md` → Run `specify` workflow
-- Missing `plan.md` → Run `plan` workflow  
-- Missing `tasks.md` → Run `tasks` workflow
-- Missing constitution → Run `constitution` workflow
+- Missing `spec.md` → Run `speckit-1-specify` workflow
+- Missing `plan.md` → Run `speckit-3-plan` workflow  
+- Missing `tasks.md` → Run `speckit-5-tasks` workflow
 
 ### Step 2: Load Artifacts with Progressive Disclosure
 Load only minimal necessary context from each artifact to maintain efficiency:
@@ -66,12 +61,6 @@ Load only minimal necessary context from each artifact to maintain efficiency:
 - Referenced file paths and components
 - Acceptance criteria and validation points
 
-**From constitution.md - Governance Context:**
-- Constitutional principles (MUST/SHOULD requirements)
-- Quality gates and compliance standards
-- Governance procedures and constraints
-- Non-negotiable project standards
-
 ### Step 3: Build Semantic Models
 Create internal representations for analysis:
 
@@ -91,12 +80,6 @@ Create internal representations for analysis:
 - Use keyword matching and explicit reference patterns
 - Identify task-to-requirement relationships
 - Flag unmapped tasks and requirements
-
-**Constitutional Rule Set:**
-- Extract principle names and normative statements
-- Identify MUST vs SHOULD requirements
-- Map principles to artifact sections
-- Create compliance validation matrix
 
 ### Step 4: Detection Analysis Passes
 Focus on high-signal findings (limit to 50 findings total):
@@ -122,13 +105,7 @@ Requirements lacking sufficient detail for implementation:
 - Tasks referencing undefined files or components
 - Non-functional requirements without quantified targets
 
-#### D. Constitution Alignment Analysis
-Validate adherence to project governance principles:
-- **CRITICAL:** Any requirement conflicting with constitutional MUST principles
-- Missing mandated sections or quality gates from constitution
-- **QUALITY:** Deviations from SHOULD principles and recommended practices
-
-#### E. Coverage Gap Analysis
+#### D. Coverage Gap Analysis
 Identify missing mappings between artifacts:
 - Requirements with zero associated tasks
 - Tasks with no mapped requirement or user story
@@ -146,10 +123,10 @@ Conflicting information across artifacts:
 Use systematic heuristic for finding prioritization:
 
 **CRITICAL Severity:**
-- Violates constitutional MUST requirements
 - Missing core specification artifacts
 - Requirements with zero coverage blocking functionality
 - Conflicting requirements preventing implementation
+- Security or data integrity violations
 
 **HIGH Severity:**
 - Duplicate or conflicting requirements affecting implementation
@@ -177,12 +154,11 @@ Produce comprehensive analysis report:
 **Generated:** [TIMESTAMP]  
 **Feature:** [FEATURE NAME]  
 **Branch:** [BRANCH NAME]  
-**Artifacts:** spec.md, plan.md, tasks.md, constitution.md
+**Artifacts:** spec.md, plan.md, tasks.md
 
 ## Executive Summary
 - **Total Findings:** [N] (Critical: X, High: Y, Medium: Z, Low: W)
 - **Coverage:** [X]% requirements mapped to tasks
-- **Constitutional Compliance:** [PASS/FAIL]
 - **Readiness:** [READY/NEEDS ATTENTION/BLOCKED]
 
 ## Findings Summary
@@ -200,10 +176,6 @@ Produce comprehensive analysis report:
 | user-auth | SEC-001, SEC-002 | ✓ Complete | Good coverage |
 | data-validation | DATA-001, TEST-001 | ✓ Adequate | |
 | performance | ✗ None | ✗ Missing | **Needs tasks** |
-
-## Constitutional Compliance
-- **CRITICAL Violations:** [COUNT] - [List violations]
-- **Status:** [PASS/FAIL] - [Overall assessment]
 
 ## Metrics
 - **Requirements:** [N] total, [X]% covered by tasks
@@ -262,7 +234,6 @@ git commit -m "docs: resolve cross-artifact analysis findings
 
 - Fixed [N] critical consistency issues
 - Improved requirement coverage to [X]%
-- Ensured constitutional compliance
 - Ready for implementation phase"
 ```
 
@@ -273,7 +244,7 @@ git commit -m "docs: resolve cross-artifact analysis findings
 - High-impact findings over exhaustive documentation
 - Actionable issues over theoretical concerns
 - Implementation readiness over perfection
-- Constitutional compliance as non-negotiable
+- Quality standards and best practices as non-negotiable
 
 **Communication Standards:**
 - Use specific artifact references (files, sections, line numbers)
@@ -289,16 +260,14 @@ git commit -m "docs: resolve cross-artifact analysis findings
 - Prioritize findings by severity and impact
 
 ## Dependencies
-- Completed specification (`specify` workflow)
-- Implementation plan (`plan` workflow)  
-- Task breakdown (`tasks` workflow)
-- Project constitution for compliance validation
+- Completed specification (`speckit-1-specify` workflow)
+- Implementation plan (`speckit-3-plan` workflow)  
+- Task breakdown (`speckit-5-tasks` workflow)
 
 ## Outputs
 - Cross-artifact analysis report
 - Findings table with severity and recommendations
 - Coverage analysis matrix
-- Constitutional compliance assessment
 - Remediation guidance and next steps
 
 ## Next Steps
